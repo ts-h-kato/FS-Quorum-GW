@@ -20,7 +20,7 @@ const app = express();
 //const app = Router();
 app.get('/', (req, res) => {
     (async () => {  
-        result = await openCall("100",12345);
+        result = await transferCall("100","200",12345);
         console.log("result .....");
         console.log(result);
         res.send("request accepted result = " + result.transactionHash);
@@ -51,6 +51,14 @@ async function queryCall(acount){
     return Promise.resolve(recept);
 }
 
+async function transferCall(account1,account2,amount){
+    console.log("await query");
+    recept = await transfer(account1,account2,amount);
+    console.log("await passed");
+    //console.log(recept);
+    return Promise.resolve(recept);
+}
+
 async function open(acount,amount){
      let start = Date.now();
      result = await instance.methods.open(acount,amount).send({from: '0x7912A81B424F56C5d76BE10E05167C4d3adCDa1C'});
@@ -61,5 +69,10 @@ async function open(acount,amount){
 
 async function query(account){
     result = await instance.methods.query("123").call({from: '0x7912A81B424F56C5d76BE10E05167C4d3adCDa1C'});
+    return Promise.resolve(result);
+}
+
+async function transfer(account1,account2,amount){
+    result = await instance.methods.transfer(account1,account2,amount).call({from: '0x7912A81B424F56C5d76BE10E05167C4d3adCDa1C'});
     return Promise.resolve(result);
 }
