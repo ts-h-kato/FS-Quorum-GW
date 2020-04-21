@@ -73,6 +73,9 @@ async function query(account){
 }
 
 async function transfer(account1,account2,amount){
+    let start = Date.now();
     result = await instance.methods.transfer(account1,account2,amount).call({from: '0x7912A81B424F56C5d76BE10E05167C4d3adCDa1C'});
+    let end = Date.now();
+    console.log(end-start + "ms(transfer)");
     return Promise.resolve(result);
 }
