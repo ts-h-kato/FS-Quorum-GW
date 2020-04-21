@@ -10,7 +10,7 @@ const account = web3.eth.getAccounts(console.log);
 var abi = [{"constant":false,"inputs":[{"name":"acc_from","type":"string"},{"name":"acc_to","type":"string"},{"name":"amount","type":"int256"}],"name":"transfer","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"acc_id","type":"string"}],"name":"query","outputs":[{"name":"amount","type":"int256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"acc_id","type":"string"},{"name":"amount","type":"int256"}],"name":"open","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}]
 
 //コントラクトのアドレス
-var address = "0x4999a6f7f68ceda444c83e2849723dc777c62262";
+var address = "0xe48bd443a50e46efefef75d4b897bdab4b1bc57f";
 
 // インスタンス化
 var instance = new web3.eth.Contract(abi,address);
@@ -20,7 +20,7 @@ const app = express();
 //const app = Router();
 app.get('/', (req, res) => {
     (async () => {  
-        result = await transferCall("100","200",12345);
+        result = await transferCall("100","200",100);
         console.log("result .....");
         console.log(result);
         res.send("request accepted result = " + result.transactionHash);
