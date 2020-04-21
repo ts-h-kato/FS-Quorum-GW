@@ -10,7 +10,7 @@ const account = web3.eth.getAccounts(console.log);
 var abi = [{"constant":false,"inputs":[{"name":"acc_from","type":"string"},{"name":"acc_to","type":"string"},{"name":"amount","type":"int256"}],"name":"transfer","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"acc_id","type":"string"}],"name":"query","outputs":[{"name":"amount","type":"int256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"acc_id","type":"string"},{"name":"amount","type":"int256"}],"name":"open","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}]
 
 //コントラクトのアドレス
-var address = "0x7eb92a9888641eb601e3ece546fb7370a48dc7da";
+var address = "0x4999a6f7f68ceda444c83e2849723dc777c62262";
 
 // インスタンス化
 var instance = new web3.eth.Contract(abi,address);
@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
     
 });
 
-web3.eth.personal.unlockAccount("0x46582883c3FB4a82DF9abb556493c70d0847980A", "password", 0).then(console.log('Account unlocked!'));
+web3.eth.personal.unlockAccount("0x7912A81B424F56C5d76BE10E05167C4d3adCDa1C", "password", 0).then(console.log('Account unlocked!'));
 app.listen(3000, () => console.log('Listening on port 3000'));
 
 function onError(err){
@@ -53,13 +53,13 @@ async function queryCall(acount){
 
 async function open(acount,amount){
      let start = Date.now();
-     result = await instance.methods.open(acount,amount).send({from: '0x46582883c3FB4a82DF9abb556493c70d0847980A'});
+     result = await instance.methods.open(acount,amount).send({from: '0x7912A81B424F56C5d76BE10E05167C4d3adCDa1C'});
      let end = Date.now();
      console.log(end-start + "ms(Open)");
      return Promise.resolve(result);
 }
 
 async function query(account){
-    result = await instance.methods.query("123").call({from: '0x46582883c3FB4a82DF9abb556493c70d0847980A'});
+    result = await instance.methods.query("123").call({from: '0x7912A81B424F56C5d76BE10E05167C4d3adCDa1C'});
     return Promise.resolve(result);
 }
